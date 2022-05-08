@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Booked Ticket</title>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
+<link th:href="@{/css/style_ticket.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+	<div class="ticket basic">
+		<p>Admit One</p>
+	</div>
+
+	<div class="ticket airline">
+		<div class="top">
+			<h1 style="color: #dee1e9; font-size: 20px ">Indian Railway</h1>
+			<div class="big">
+				<p class="from">TICKET</p>
+				
+			</div>
+			
+		</div>
+		<div class="bottom">
+			<div class="column">
+			 <form th:action="@{/bookedticket}"  th:object = "${booked}"  method="POST" novalidate>
+				<div class="row row-1">
+				<p><span>Train</span><b th:text ="*{trainName}"></b></p>
+				<p class="row--right"><span>Train No</span><b th:text ="*{trainNo}"></b></p>
+				</div><br />
+				
+					  <div class="row row-1">
+					  	<p><span>Station From</span><b th:text ="*{fromPlace}"></b></p>
+					  	<p class="row--center" style="margin-right: 170px;"><span>Station To</span><b th:text ="*{toPlace}"></b></p>
+					  </div>
+					  
+				<div class="row row-2">
+					<p><span>Departs</span><b th:text ="*{dispatch}"></b></p>
+					<p class="row--center"><span>Arrives</span><b th:text ="*{arrival}"></b></p>
+					<p class="row--right"><span>Date</span><b th:text ="*{date}"></b></p>
+				</div>
+
+				<div class="row row-3">
+					<p><span>Passenger</span><b th:text ="*{name}"></b></p>
+					<p class="row--center"><span>Mobile</span><b th:text ="*{mobile}"></b></p>
+					<p class="row--right"><span>Ticket Price</span><b th:text ="*{trainFare}"></b></p>
+				</div>
+				</form>
+			</div>
+			<div class="bar--code" style="width: 240px;"></div>
+		</div>
+	</div>
+
+
+</div>
+<!-- partial -->
+  <script type="text/javascript" th:src="@{/js/script.js}"></script>
+</body>
+</html>

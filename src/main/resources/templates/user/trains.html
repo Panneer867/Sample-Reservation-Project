@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+   <head>
+      <meta charset="ISO-8859-1">
+      <title>Indian Railway | Tickets Page</title>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+      <link th:href="@{/vendor/animate.css/animate.min.css}" rel="stylesheet">
+      <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+      <link th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+      <link th:href="@{/css/style.css}" rel="stylesheet">
+      <link th:href="@{/admin_css/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css}" rel="stylesheet" />
+      <link th:href="@{/admin_css/dist/css/style.min.css}" rel="stylesheet" />
+	
+           
+   </head>
+   <body>
+      <header id="header" class="fixed-top d-flex align-items-center">
+         <div class="container d-flex justify-content-start">
+            <h1 class="logo"><a>INGROINFO</a></h1>
+         </div>
+         <div class="container d-flex justify-content-end">
+            <nav id="navbar" class="navbar">
+               <ul>
+                  <li><a class="nav-link scrollto" th:href="@{/userpage}">[[${firstName}]]</a></li>
+                  <li><a class="nav-link scrollto active" th:href="@{/available-trains}">Available Trains</a></li>
+                  <li><a class="nav-link scrollto" th:href="@{/logout}">Logout</a></li>
+               </ul>
+               <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+         </div>
+      </header>
+      <section id="hero">
+         <div class="carousel-item active" style="background-image: url('img/Train9.jpg');">
+           <div class="container-fluid pt-5">
+               <div class="row">
+                  <div class="col-12 pt-4">
+                     <div class="card">
+                        <div class="card-body">
+                           <div class="table-responsive">
+                              <table id="zero_config" class="table table-striped table-bordered">
+                                 <thead>
+                                    <tr>
+                                    <th><b>Train No</b></th>
+                                       <th><b>Name</b></th>
+                                       <th><b>Station From</b></th>
+                                       <th><b>Station To</b></th>
+                                       <th><b>Seats Available</b></th>
+                                       <th><b>Dispatch</b></th>
+                                       <th><b>Arrival</b></th>
+                                       <th><b>Ticket Price</b></th>
+                                       <th><b>Action</b></th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr th:each="trains: ${trainsavailable}">
+                                    <td th:text = "${trains.trainNo}"></td>
+                                       <td th:text = "${trains.trainName}"></td>
+                                       <td th:text = "${trains.fromPlace}"></td>
+                                       <td th:text = "${trains.toPlace}"></td>
+                                       <td th:text = "${trains.totalSeat}"></td>
+                                       <td th:text = "${trains.dispatch}"></td>
+                                       <td th:text = "${trains.arrival}"></td>
+                                       <td th:text = "${trains.trainFare}"></td>
+                                      <td>
+                                   	  <div class="btn-group">
+                                             <a th:href="@{/bookticket-{trainNo}(trainNo=${trains.trainNo})}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteModal">Book Here</a>
+                                          </div>
+                                   	  
+                                   	  </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <footer id="footer">
+         <div class="container">
+            <div class="copyright">
+               &copy; Copyright <strong><span>2022</span></strong>
+            </div>
+            <div class="credits">
+               Designed by <a href="https://www.ingroinfo.com/">IngrOInfo </a>
+            </div>
+         </div>
+      </footer>
+      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="top: 150px;">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Cancel Ticket</h5>
+				</div>
+				<div class="modal-body">Are you sure, you want to cancel this ticket?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <a href="" class="btn btn-primary" id="delRef">Yes, Cancel</a> </div>
+				</div>
+		</div>
+	</div>
+      <script type="text/javascript" th:src="@{/admin_css/assets/libs/jquery/dist/jquery.min.js}"></script>
+      <!-- Bootstrap tether Core JavaScript -->
+      <script type="text/javascript" th:src="@{/admin_css/assets/extra-libs/DataTables/datatables.min.js}"></script>
+      <!-- Data Tables  -->
+      <script>
+         $("#zero_config").DataTable();
+      </script>
+      <!-- Basic Table  -->
+      
+   </body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+   <head>
+      <meta charset="ISO-8859-1">
+      <title>Indian Railway | Update Train</title>
+      <link th:href="@{/admin_css/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css}" rel="stylesheet" />
+      <link th:href="@{/admin_css/dist/css/style.min.css}" rel="stylesheet" />
+      <link th:href="@{/vendor/animate.css/animate.min.css}" rel="stylesheet">
+      <link th:href="@{/vendor/bootstrap/css/bootstrap.min2.css}" rel="stylesheet">
+   </head>
+   <body>
+      <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+         <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+               <div class="navbar-header" data-logobg="skin5">
+                  <a class="navbar-brand" href="index.html">
+                  <b class="logo-icon ps-2">
+                  <img
+                     src="admin_css/assets/images/logo-icon.png"
+                     alt="homepage"
+                     class="light-logo"
+                     width="25"
+                     />
+                  </b>
+                  <span class="logo-text ms-2">
+                  <img
+                     src="admin_css/assets/images/logo-text.png"
+                     alt="homepage"
+                     class="light-logo"
+                     />
+                  </span>
+                  </a>
+               </div>
+               <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                  <ul class="navbar-nav float-start me-auto">
+                     <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link sidebartoggler waves-effect waves-light" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i
+                           ></a>
+                     </li>
+                  </ul>
+                  <ul class="navbar-nav float-end">
+                     <li class="nav-item dropdown">
+                        <a class="nav-link" th:href="@{/}" id="navbarDropdown" role="button">
+                        <span><b>HOME</b></span>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </nav>
+         </header>
+         <aside class="left-sidebar" data-sidebarbg="skin5">
+            <nav class="sidebar-nav">
+               <ul id="sidebarnav" class="pt-4">
+                  <li class="sidebar-item">
+                     <a class="sidebar-link waves-effect waves-dark sidebar-link active" th:href="@{/adminDashboard}" aria-expanded="false"><i class="mdi mdi-sort-variant"></i
+                        ><span class="hide-menu">Train Lists</span></a
+                        >
+                  </li>
+                  <li class="sidebar-item">
+                     <a
+                        class="sidebar-link waves-effect waves-dark sidebar-link"
+                        th:href="@{/addTrains}"
+                        aria-expanded="false"
+                        ><i class="mdi mdi-train"></i
+                        ><span class="hide-menu">Add Train</span></a
+                        >
+                  </li>
+                  <li class="sidebar-item">
+                     <a
+                        class="sidebar-link waves-effect waves-dark sidebar-link"
+                        th:href="@{/usermanagement}"
+                        aria-expanded="false"
+                        ><i class="mdi mdi-account-multiple"></i
+                        ><span class="hide-menu">User Management</span></a
+                        >
+                  </li>
+                  <li class="sidebar-item">
+                     <a
+                        class="sidebar-link waves-effect waves-dark sidebar-link"
+                        th:href="@{/adminlogout}"
+                        aria-expanded="false"
+                        ><i class="mdi mdi-logout"></i
+                        ><span class="hide-menu">Logout</span></a
+                        >
+                  </li>
+               </ul>
+            </nav>
+         </aside>
+         <div class="page-wrapper">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="carousel-content">
+                        <div class="row justify-content-center" style="padding-top: 30px;">
+                           <div class="col-md-10">
+                              <div class="card animate__animated animate__fadeInDown ">
+                                 <article class="card-body" style="background-color: #C8E6C9;">
+                                    <form th:action="@{/saveTrain}" th:object="${train}" method="POST" class="needs-validation" novalidate>
+                                       <div class="alert alert-success" role="alert" th:if="${param.success}">
+                                          You've successfully registered to Indian Railway
+                                       </div>
+                                       <div class="row">
+                                          <div class="form-group w-25">
+                                             <label>Train No</label>
+                                             <input type="number" th:field="*{trainNo}" placeholder="Enter Train No" class="form-control form-control-sm" autofocus readonly>
+                                          </div>
+                                          <div class="form-group w-75">
+                                             <label>Train Name</label>
+                                             <select class="form-select form-select-sm" th:field="*{trainName}" autofocus required>
+                                             <option selected value="">Select</option>
+                                                <option value="Tejas Express Executive Class coach">Tejas Express Executive Class coach</option>
+                                                <option  value="Gatimaan Express">Gatimaan Express</option>
+                                                <option  value="Vande Bharat Express">Vande Bharat Express</option>
+                                                <option  value="Duronto Express">Duronto Express</option>
+                                                <option  value="Rajdhani Express">Rajdhani Express</option>
+                                                <option  value="Shatabdi Express">Shatabdi Express</option>
+                                                <option  value="Anand Vihar Yuva Express">Anand Vihar Yuva Express</option>
+                                                <option  value="Sampark Kranti Express">Sampark Kranti Express</option>
+                                                <option  value="Kavi Guru Express">Kavi Guru Express</option>
+                                                </select>
+                                             <div class="invalid-feedback">
+                                                Please provide a Train Name.
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="row">
+                                          <div class="form-group w-25">
+                                             <label>Seat Availability</label>
+                                             <input type="text" th:field="*{totalSeat}" placeholder="Enter Train Seat" class="form-control form-control-sm" autofocus required>
+                                             <div class="invalid-feedback">
+                                                Please provide a Seat Availability.
+                                             </div>
+                                          </div>
+                                          <div class="form-group w-25">
+                                             <label>Dispatch</label>
+                                             <input type="time" th:field="*{dispatch}" class="form-control html-duration-picker" data-hide-seconds autofocus required>
+                                          <div class="invalid-feedback">
+                                                Please provide Dispatch time.
+                                             </div>
+                                          </div>
+                                          <div class="form-group w-25">
+                                             <label>Arrival</label>
+                                             <input type="time" th:field="*{arrival}" class="form-control form-control-sm" autofocus required>
+                                             <div class="invalid-feedback">
+                                                Please provide Arrival time.
+                                             </div>
+                                          </div>
+                                          <div class="form-group w-25">
+                                             <label>Ticket Price</label>
+                                             <input type="text" th:field="*{trainFare}" placeholder="Enter Ticket Price" class="form-control form-control-sm" autofocus required>
+                                             <div class="invalid-feedback">
+                                                Please provide a Ticket Price.
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="row">
+                                       <div class="form-group col-md-4">
+                                             <label>Date</label>
+                                             <input type="date" th:field="*{date}" class="form-control form-control-sm" autofocus required>
+                                             <div class="invalid-feedback">
+                                                Please provide a Date.
+                                             </div>
+                                             </div>
+                                          <div class="form-group col-md-4">
+                                             <label>From Place</label>
+                                             <select class="form-select form-select-sm" th:field="*{fromPlace}" required>
+                                                <option selected value="">Select</option>
+                                                <option value="Chennai">Chennai</option>
+                                                <option  value="Bangalore">Bangalore</option>
+                                                <option  value="Mumbai">Mumbai</option>
+                                                <option  value="Delhi">Delhi</option>
+                                                <option  value="Kolkatta">Kolkatta</option>
+                                                <option  value="Cochin">Cochin</option>
+                                                <option  value="Mysore">Mysore</option>
+                                             </select>
+                                             <div class="invalid-feedback">
+                                                Please provide a From Place.
+                                             </div>
+                                          </div>
+                                          <div class="form-group col-md-4">
+                                             <label>To Place</label>
+                                             <select class="form-select form-select-sm" th:field="*{toPlace}" required>
+                                                <option selected value="">Select</option>
+                                                <option value="Chennai">Chennai</option>
+                                                <option  value="Bangalore">Bangalore</option>
+                                                <option  value="Mumbai">Mumbai</option>
+                                                <option  value="Delhi">Delhi</option>
+                                                <option  value="Kolkatta">Kolkatta</option>
+                                                <option  value="Cochin">Cochin</option>
+                                                <option  value="Mysore">Mysore</option>
+                                             </select>
+                                             <div class="invalid-feedback">
+                                                Please provide a To Place.
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="form-group text-center" style="margin-top: 16px;">
+                                          <button value="submit" type="submit" class="btn btn-primary">Update Train</button> &nbsp;&nbsp;
+                                          <a th:href="@{/adminDashboard}" class="btn btn-secondary">Cancel</a>
+                                       </div>
+                                    </form>
+                                 </article>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <footer class="footer text-center" style="padding-top: 74px;padding-bottom: 0px;height: 117px;">
+               Designed by
+               <a href="https://www.ingroinfo.com/">IngrOInfo</a>.
+               <div class="copyright">
+                  &copy; Copyright <strong><span>2022</span></strong>
+               </div>
+            </footer>
+         </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/html-duration-picker@latest/dist/html-duration-picker.min.js"></script>
+      <script type="text/javascript" th:src="@{/admin_css/assets/libs/jquery/dist/jquery.min.js}"></script>
+      <!-- Bootstrap tether Core JavaScript -->
+      <script type="text/javascript" th:src="@{/admin_css/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
+      <!--Wave Effects -->
+      <script type="text/javascript" th:src="@{/admin_css/dist/js/waves.js}"></script>
+      <!--Menu sidebar -->
+      <script type="text/javascript" th:src="@{/admin_css/dist/js/sidebarmenu.js}"></script>
+      <!--Custom JavaScript -->
+      <script type="text/javascript" th:src="@{/admin_css/dist/js/custom.min.js}"></script>
+      <!-- this page js -->
+      <script type="text/javascript" th:src="@{/admin_css/assets/extra-libs/DataTables/datatables.min.js}"></script>
+      <!-- Data Tables  -->
+      <script>
+         $("#zero_config").DataTable();
+      </script>
+      <!-- Basic Table  -->
+      <script>
+         (function() {
+             'use strict';
+             window.addEventListener('load', function() {
+                 var forms = document.getElementsByClassName('needs-validation');
+                	var validation = Array.prototype.filter.call(forms, function(form) {
+                     form.addEventListener('submit', function(event) {
+                         if (form.checkValidity() === false) {
+                             event.preventDefault();
+                             event.stopPropagation();
+                         }
+                         form.classList.add('was-validated');
+                     }, false);
+                 });
+             }, false);
+         })();
+      </script>
+      <!-- validation for fields -->
+   </body>
+</html>

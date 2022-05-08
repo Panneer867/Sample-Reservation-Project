@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 3.5.2  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Landscape" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="47"/>
+	<property name="ireport.y" value="451"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<style name="Title" forecolor="#FFFFFF" lineSpacing="Single" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#666666" lineSpacing="Single" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" lineSpacing="Single" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" lineSpacing="Single" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" lineSpacing="Single" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF" lineSpacing="Single"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset"/>
+	<field name="trainNo" class="java.lang.Long"/>
+	<field name="arrival" class="java.lang.String"/>
+	<field name="date" class="java.lang.String"/>
+	<field name="dispatch" class="java.lang.String"/>
+	<field name="fromPlace" class="java.lang.String"/>
+	<field name="toPlace" class="java.lang.String"/>
+	<field name="totalSeat" class="java.lang.String"/>
+	<field name="trainFare" class="java.lang.String"/>
+	<field name="trainName" class="java.lang.String"/>
+	<background>
+		<band height="555" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="159" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="330" y="123" width="150" height="29" forecolor="#6666FF"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Available Trains]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="802" height="115"/>
+				<imageExpression class="java.lang.String"><![CDATA["D:/WorkSpace/Spring Workspace/Railway/src/main/resources/static/img/Banner12.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="181" y="15" width="410" height="70" forecolor="#FF6633"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Algerian" size="52"/>
+				</textElement>
+				<text><![CDATA[Indian Railway]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="29" backcolor="#1EBD78"/>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" mode="Opaque" x="0" y="0" width="80" height="28" forecolor="#000000" backcolor="#1EBD78">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="21f6f751-6bd9-44da-be78-8544e7afe57c"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#ED6D6B"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Train No]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" mode="Opaque" x="80" y="0" width="100" height="28" forecolor="#000000" backcolor="#1EBD78">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="518e137e-4f9d-44da-a2cf-e577f34bdbce"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#ED6D6B"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Train Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" mode="Opaque" x="180" y="0" width="100" height="28" forecolor="#000000" backcolor="#1EBD78">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb2b0406-c5a9-4126-b61b-ce3bb3c540be"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#ED6D6B"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Station From]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" mode="Opaque" x="280" y="0" width="101" height="28" forecolor="#000000" backcolor="#1EBD78">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4a253f6e-e9cd-4d07-bb92-92d900005f61"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#ED6D6B"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Stattion To]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" mode="Opaque" x="381" y="0" width="99" height="28" forecolor="#000000" backcolor="#1EBD78">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43bd2b70-40ea-455b-be28-e0264918d7fb"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#ED6D6B"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Seats]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" mode="Opaque" x="480" y="0" width="80" height="28" forecolor="#000000" backcolor="#1EBD78">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f6038109-2928-4465-b3d1-3d30e1dca19d"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#ED6D6B"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Departs]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" mode="Opaque" x="560" y="0" width="70" height="28" forecolor="#000000" backcolor="#1EBD78">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f20fd6da-e899-41c2-a341-b14e85642c0d"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#ED6D6B"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Arrives]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" mode="Opaque" x="630" y="0" width="90" height="28" forecolor="#000000" backcolor="#1EBD78">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7c94f9c9-4b13-4228-a100-400ff1bbd87b"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#ED6D6B"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" mode="Opaque" x="720" y="0" width="82" height="28" forecolor="#000000" backcolor="#1EBD78">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4a4e5cd-fb6d-4fca-a385-431271e49529"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#ED6D6B"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ticket Price]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="34" width="802" height="1"/>
+			</line>
+			<frame>
+				<reportElement x="0" y="0" width="802" height="30"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="-227" y="0" width="63" height="14">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="21f6f751-6bd9-44da-be78-8544e7afe57c"/>
+					</reportElement>
+					<textElement lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$F{trainNo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="80" height="30">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="518e137e-4f9d-44da-a2cf-e577f34bdbce"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{trainNo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="80" y="0" width="100" height="30">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb2b0406-c5a9-4126-b61b-ce3bb3c540be"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{trainName}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="180" y="0" width="100" height="30">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb2b0406-c5a9-4126-b61b-ce3bb3c540be"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{fromPlace}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="281" y="0" width="100" height="30">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb2b0406-c5a9-4126-b61b-ce3bb3c540be"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{toPlace}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="380" y="0" width="100" height="30">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb2b0406-c5a9-4126-b61b-ce3bb3c540be"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{totalSeat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="480" y="0" width="80" height="30">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb2b0406-c5a9-4126-b61b-ce3bb3c540be"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dispatch}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="560" y="0" width="80" height="30">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb2b0406-c5a9-4126-b61b-ce3bb3c540be"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{arrival}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="640" y="0" width="80" height="30">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb2b0406-c5a9-4126-b61b-ce3bb3c540be"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{date}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="720" y="1" width="82" height="29">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb2b0406-c5a9-4126-b61b-ce3bb3c540be"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{trainFare}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#FF6666"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="800" height="16" forecolor="#D0B48E" backcolor="#993399"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="16" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+   <head>
+      <meta charset="ISO-8859-1">
+      <title>Indian Railway | Admin Dashboard</title>
+      <link th:href="@{/admin_css/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css}" rel="stylesheet" />
+      <link th:href="@{/admin_css/dist/css/style.min.css}" rel="stylesheet" />
+      <link th:href="@{/vendor/bootstrap/css/bootstrap.min3.css}" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    
+  
+   </head>
+   <body>
+      <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+         <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+               <div class="navbar-header" data-logobg="skin5">
+                  <a class="navbar-brand">
+                  <b class="logo-icon ps-2">
+                  <img
+                     src="admin_css/assets/images/logo-icon.png"
+                     alt="homepage"
+                     class="light-logo"
+                     width="25"
+                     />
+                  </b>
+                  <span class="logo-text ms-2">
+                  <img
+                     src="admin_css/assets/images/logo-text.png"
+                     alt="homepage"
+                     class="light-logo"
+                     />
+                  </span>
+                  </a>
+               </div>
+               <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                  <ul class="navbar-nav float-start me-auto">
+                     <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link sidebartoggler waves-effect waves-light" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i
+                           ></a>
+                     </li>
+                  </ul>
+                  <ul class="navbar-nav float-end">
+                     <li class="nav-item dropdown">
+                     <div class="dropdown">
+  
+  <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Generate Report
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" th:href="@{/report/html}">HTML</a>
+    <a class="dropdown-item" th:href="@{/report/pdf}">PDF</a>
+  </div>
+</div>
+
+                     </li>
+                  </ul>
+               </div>
+            </nav>
+         </header>
+         <aside class="left-sidebar" data-sidebarbg="skin5">
+            <nav class="sidebar-nav">
+               <ul id="sidebarnav" class="pt-4">
+                  <li class="sidebar-item">
+                     <a class="sidebar-link waves-effect waves-dark sidebar-link active" th:href="@{/adminDashboard}" aria-expanded="false"><i class="mdi mdi-sort-variant"></i
+                        ><span class="hide-menu">Train Lists</span></a
+                        >
+                  </li>
+                  <li class="sidebar-item">
+                     <a
+                        class="sidebar-link waves-effect waves-dark sidebar-link"
+                        th:href="@{/addTrains}"
+                        aria-expanded="false"
+                        ><i class="mdi mdi-train"></i
+                        ><span class="hide-menu">Add Train</span></a
+                        >
+                  </li>
+                  <li class="sidebar-item">
+                     <a
+                        class="sidebar-link waves-effect waves-dark sidebar-link"
+                       	th:href="@{/usermanagement}"
+                        aria-expanded="false"
+                        ><i class="mdi mdi-account-multiple"></i
+                        ><span class="hide-menu">User Management</span></a
+                        >
+                  </li>
+                  <li class="sidebar-item">
+                     <a
+                        class="sidebar-link waves-effect waves-dark sidebar-link"
+                        th:href="@{/adminlogout}"
+                        aria-expanded="false"
+                        ><i class="mdi mdi-logout"></i
+                        ><span class="hide-menu">Logout</span></a
+                        >
+                  </li>
+               </ul>
+            </nav>
+         </aside>
+         <div class="alert alert-info" role="alert" th:if="${param.success}">Report has been Generated</div>
+         <div class="page-wrapper">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="card">
+                        <div class="card-body">
+                           <div class="table-responsive">
+                              <table id="zero_config" class="table table-striped table-bordered">
+                                 <thead>
+                                    <tr>
+                                       <th><b>Train No</b></th>
+                                       <th><b>Name</b></th>
+                                       <th><b>Seat Availability</b></th>
+                                       <th><b>Ticket Price</b></th>
+                                       <th><b>From Place</b></th>
+                                       <th><b>To Place</b></th>
+                                       <th><b>Dispatch</b></th>
+                                       <th><b>Arrival</b></th>
+                                  	   <th><b>Date</b></th>
+                                       <th><b>Actions</b></th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr th:each="train: ${listTrains}">
+                                       <td th:text = "${train.trainNo}"></td>
+                                       <td th:text = "${train.trainName}"></td>
+                                       <td th:text = "${train.totalSeat}"></td>
+                                       <td th:text = "${train.trainFare}"></td>
+                                       <td th:text = "${train.fromPlace}"></td>
+                                       <td th:text = "${train.toPlace}"></td>
+                                       <td th:text = "${train.dispatch}"></td>
+                                       <td th:text = "${train.arrival}"></td>
+                                       <td th:text = "${train.date}"></td>
+                                       <td>
+                                          <div class="btn-group" role="group" aria-label="Basic example">
+                                             <a th:href="@{/updateTrainNo-{trainNo}(trainNo=${train.trainNo})}" class="btn btn-primary btn-sm">Update</a>&nbsp;&nbsp; 
+                                             <a th:href="@{/deleteTrainNo-{trainNo}(trainNo=${train.trainNo})}" class="btn btn-danger btn-sm" data-toggle="modal" id="deleteButton" data-target="#deleteModal">Delete</a>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <footer class="footer text-center" style="padding-top: 74px;padding-bottom: 0px;height: 117px;">
+               Designed by
+               <a href="https://www.ingroinfo.com/">IngrOInfo</a>.
+               <div class="copyright">
+                  &copy; Copyright <strong><span>2022</span></strong>
+               </div>
+            </footer>
+         </div>
+      </div>
+      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="top: 150px;">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Delete Train</h5>
+				</div>
+				<div class="modal-body">Are you sure, you want to delete this train?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <a href="" class="btn btn-primary" id="delRef">Yes, Delete</a> </div>
+				</div>
+		</div>
+	</div>
+      <script type="text/javascript" th:src="@{/admin_css/assets/libs/jquery/dist/jquery.min.js}"></script>
+      <!-- Bootstrap tether Core JavaScript -->
+      <script type="text/javascript" th:src="@{/admin_css/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
+      <!--Wave Effects -->
+      <script type="text/javascript" th:src="@{/admin_css/dist/js/waves.js}"></script>
+      <!--Menu sidebar -->
+      <script type="text/javascript" th:src="@{/admin_css/dist/js/sidebarmenu.js}"></script>
+      <!--Custom JavaScript -->
+      <script type="text/javascript" th:src="@{/admin_css/dist/js/custom.min.js}"></script>
+      <!-- this page js -->
+      <script type="text/javascript" th:src="@{/admin_css/assets/extra-libs/DataTables/datatables.min.js}"></script>
+      <!-- Data Tables  -->
+      <script>
+         $("#zero_config").DataTable();
+      </script>
+      <!-- Basic Table  -->
+      <script>
+	$('.table #deleteButton').on('click', function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
+		$('#deleteModal #delRef').attr('href', href);
+		$('#deleteModal').modal();
+	});
+	</script>
+	<script>$('.dropdown-toggle').dropdown()</script>
+   </body>
+</html>

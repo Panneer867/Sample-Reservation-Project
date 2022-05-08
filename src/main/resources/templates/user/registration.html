@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+   <head>
+      <meta charset="ISO-8859-1">
+      <title>Indian Railway | Registration</title>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+      <link th:href="@{/vendor/animate.css/animate.min.css}" rel="stylesheet">
+      <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+      <link th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+      <link th:href="@{/css/style_register.css}" rel="stylesheet">
+      <link th:href="@{/vendor/bootstrap/css/bootstrap.min1.css}" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+   </head>
+   <body>
+      <header id="header" class="fixed-top d-flex align-items-center">
+         <div class="container d-flex justify-content-start">
+            <h1 class="logo"><a>INGROINFO</a></h1>
+         </div>
+         <div class="container d-flex justify-content-end">
+            <nav id="navbar" class="navbar">
+               <ul>
+                  <li><a class="nav-link scrollto" th:href="@{/}">Home</a></li>
+                  <li><a class="nav-link scrollto" th:href="@{/about}">About</a></li>
+                  <li><a class="nav-link scrollto" th:href="@{/contact}">Contact</a></li>
+                  <li><a class="nav-link scrollto active " th:href="@{/registration}">User Registration</a></li>
+                  <li><a class="nav-link scrollto" th:href="@{/login}">Login</a></li>
+               </ul>
+               <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+         </div>
+      </header>
+      <section id="hero">
+         <div class="carousel-item active" style="background-image: url('img/Train5.jpg');">
+            <div class="container ">
+               <div class="carousel-content ">
+                  <div class="row justify-content-center ">
+                     <div class="col-md-6" style="padding-top: 75px;">
+                        <div class="card animate__animated animate__fadeInDown ">
+                           <header class="card-header ">
+                              <h4 class="text-center" style="font-family:Segoe UI,Segoe UI Symbol; color:#212529;">REGISTRATION</h4>
+                           </header>
+                           <article class="card-body">
+                              <form method="POST" th:action="@{/registration}" th:object="${user}" >
+                                 <div class="alert alert-success" role="alert" th:if="${param.success}">
+                                    You've successfully registered to Indian Railway
+                                 </div>
+                                 <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                       <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                    </div>
+                                    <input id="firstName" class="form-control" th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid':''}" placeholder="First Name" type="text" th:field="*{firstName}" autofocus>
+                                    <div class="invalid-feedback" th:errors="*{firstName}"></div>
+                                 </div>
+                                 <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                       <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                    </div>
+                                    <input id="lastName" class="form-control" th:classappend="${#fields.hasErrors('lastName') ? 'is-invalid':''}" placeholder="Last Name" type="text" th:field="*{lastName}">
+                                    <div class="invalid-feedback" th:errors="*{lastName}"></div>
+                                 </div>
+                                 <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                       <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                    </div>
+                                    <input id="email" class="form-control" th:classappend="${#fields.hasErrors('email') ? 'is-invalid':''}" placeholder="Email address" type="text" th:field="*{email}">
+                                    <div class="invalid-feedback" th:errors="*{email}"></div>
+                                 </div>
+                                 <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                       <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                    </div>
+                                    <input id="password" class="form-control" th:classappend="${#fields.hasErrors('password') ? 'is-invalid':''}" placeholder="Create password" type="password" th:field="*{password}">
+                                    <span class="input-group-text" onclick="password_show_hide();">
+                                    <i class="fas fa-eye" id="show_eye"></i>
+                                    <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                                    </span>
+                                    <div class="invalid-feedback" th:errors="*{password}"></div>
+                                 </div>
+                                 <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                       <span class="input-group-text"> <i class="fa fa-mobile"></i> </span>
+                                    </div>
+                                    <input id="mobile" class="form-control" th:classappend="${#fields.hasErrors('mobile') ? 'is-invalid':''}" placeholder="Mobile number" type="text" th:field="*{mobile}">
+                                    <div class="invalid-feedback" th:errors="*{mobile}"></div>
+                                 </div>
+                                 <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                       <span class="input-group-text"> <i class="fa fa-id-card"></i> </span>
+                                    </div>
+                                    <input id="aadhar" class="form-control" th:classappend="${#fields.hasErrors('mobile') ? 'is-invalid':''}" placeholder="Aadhar Number" type="text" th:field="*{aadhar}">
+                                    <div class="invalid-feedback" th:errors="*{aadhar}"></div>
+                                 </div>
+                                 <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                       <span class="input-group-text"> <i class="fa fa-home"></i> </span>
+                                    </div>
+                                    <input id="address" class="form-control" placeholder="Address" type="text" th:field="*{address}">
+                                 </div>
+                                 <div class="form-group from-check text-center">
+                                    <input type="checkbox" class="form-check-input" required>
+                                    <label for="agreement">Agree to terms and conditions</label>
+                                 </div>
+                                 <div class="form-group text-center">
+                                    <button value="submit" type="submit" class="btn btn-primary"> Register  </button> &nbsp;&nbsp;
+                                    <button type="reset" value="Reset" class="btn btn-secondary">Reset</button>
+                                 </div>
+                                 <span>Already Registered? <a th:href="@{/login}">Login Here</a></span>
+                              </form>
+                           </article>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <footer id="footer">
+         <div class="container">
+            <div class="copyright">
+               &copy; Copyright <strong><span>2022</span></strong>
+            </div>
+            <div class="credits">
+               Designed by <a href="https://www.ingroinfo.com/">IngrOInfo </a>
+            </div>
+         </div>
+      </footer>
+      <script type="text/javascript" th:src="@{/js/main.js}"></script>
+   </body>
+</html>

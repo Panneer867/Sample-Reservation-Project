@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+   <head>
+      <meta charset="ISO-8859-1">
+      <title>Indian Railway | Add Train</title>
+      <link th:href="@{/admin_css/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css}" rel="stylesheet" />
+      <link th:href="@{/admin_css/dist/css/style.min.css}" rel="stylesheet" />
+      <link th:href="@{/vendor/animate.css/animate.min.css}" rel="stylesheet">
+      <link th:href="@{/vendor/bootstrap/css/bootstrap.min2.css}" rel="stylesheet">
+   </head>
+   <body>
+      <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+         <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+               <div class="navbar-header" data-logobg="skin5">
+                  <a class="navbar-brand" href="index.html">
+                  <b class="logo-icon ps-2">
+                  <img
+                     src="admin_css/assets/images/logo-icon.png"
+                     alt="homepage"
+                     class="light-logo"
+                     width="25"
+                     />
+                  </b>
+                  <span class="logo-text ms-2">
+                  <img
+                     src="admin_css/assets/images/logo-text.png"
+                     alt="homepage"
+                     class="light-logo"
+                     />
+                  </span>
+                  </a>
+               </div>
+               <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                  <ul class="navbar-nav float-start me-auto">
+                     <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link sidebartoggler waves-effect waves-light" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i
+                           ></a>
+                     </li>
+                  </ul>
+                  <ul class="navbar-nav float-end">
+                     <li class="nav-item dropdown">
+                        <a class="nav-link" th:href="@{/}" id="navbarDropdown" role="button">
+                        <span><b>HOME</b></span>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </nav>
+         </header>
+         <aside class="left-sidebar" data-sidebarbg="skin5">
+            <nav class="sidebar-nav">
+               <ul id="sidebarnav" class="pt-4">
+                  <li class="sidebar-item">
+                     <a class="sidebar-link waves-effect waves-dark sidebar-link " th:href="@{/adminDashboard}" aria-expanded="false"><i class="mdi mdi-sort-variant"></i
+                        ><span class="hide-menu">Train Lists</span></a
+                        >
+                  </li>
+                  <li class="sidebar-item">
+                     <a
+                        class="sidebar-link waves-effect waves-dark sidebar-link active"
+                        th:href="@{/addTrains}"
+                        aria-expanded="false"
+                        ><i class="mdi mdi-train"></i
+                        ><span class="hide-menu">Add Train</span></a
+                        >
+                  </li>
+                  <li class="sidebar-item">
+                     <a
+                        class="sidebar-link waves-effect waves-dark sidebar-link"
+                        th:href="@{/usermanagement}"
+                        aria-expanded="false"
+                        ><i class="mdi mdi-account-multiple"></i
+                        ><span class="hide-menu">User Management</span></a
+                        >
+                  </li>
+                  <li class="sidebar-item">
+                     <a
+                        class="sidebar-link waves-effect waves-dark sidebar-link"
+                        th:href="@{/adminlogout}"
+                        aria-expanded="false"
+                        ><i class="mdi mdi-logout"></i
+                        ><span class="hide-menu">Logout</span></a
+                        >
+                  </li>
+               </ul>
+            </nav>
+         </aside>
+         <div class="page-wrapper">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-10">
+                     <div class="carousel-content">
+                        <div class="row justify-content-center" style="padding-top: 30px;">
+                           <div class="col-md-9">
+                              <div class="card animate__animated animate__fadeInDown ">
+                                 <article class="card-body" style="background-color: #C8E6C9;">
+                                    <form th:action="@{/addTrains}" th:object="${train}" method="POST">
+                                       <div class="row">
+                                          <div class="form-group w-25">
+                                             <label>Train No<span class="required">*</span></label>
+                                             <div class="input-group">
+                                                <input type="number" th:field="*{trainNo}" th:classappend="${#fields.hasErrors('trainNo') ? 'is-invalid':''}" placeholder="Enter Train No" class="form-control form-control-sm" autofocus>
+                                                <div class="invalid-feedback" th:errors="*{trainNo}"></div>
+                                             </div>
+                                          </div>
+                                          <div class="form-group w-75">
+                                             <label>Train Name<span class="required">*</span></label>
+                                             <select class="form-select form-select-sm" th:field="*{trainName}" th:classappend="${#fields.hasErrors('trainName') ? 'is-invalid':''}" autofocus>
+                                                <option selected value="">Select</option>
+                                                <option value="Tejas Express Executive Class coach">Tejas Express Executive Class coach</option>
+                                                <option  value="Gatimaan Express">Gatimaan Express</option>
+                                                <option  value="Vande Bharat Express">Vande Bharat Express</option>
+                                                <option  value="Duronto Express">Duronto Express</option>
+                                                <option  value="Rajdhani Express">Rajdhani Express</option>
+                                                <option  value="Shatabdi Express">Shatabdi Express</option>
+                                                <option  value="Anand Vihar Yuva Express">Anand Vihar Yuva Express</option>
+                                                <option  value="Sampark Kranti Express">Sampark Kranti Express</option>
+                                                <option  value="Kavi Guru Express">Kavi Guru Express</option>
+                                             </select>
+                                            <div class="invalid-feedback" th:errors="*{trainName}"></div>
+                                          </div>
+                                       </div>
+                                       <div class="row">
+                                          <div class="form-group w-25">
+                                             <label>From Place<span class="required">*</span></label>
+                                             <select class="form-select form-select-sm" th:field="*{fromPlace}" th:classappend="${#fields.hasErrors('fromPlace') ? 'is-invalid':''}" autofocus>
+                                                <option selected value="">Select</option>
+                                                <option value="Chennai">Chennai</option>
+                                                <option  value="Bangalore">Bangalore</option>
+                                                <option  value="Mumbai">Mumbai</option>
+                                                <option  value="Delhi">Delhi</option>
+                                                <option  value="Kolkatta">Kolkatta</option>
+                                                <option  value="Cochin">Cochin</option>
+                                                <option  value="Mysore">Mysore</option>
+                                             </select>
+                                             <div class="invalid-feedback" th:errors="*{fromPlace}"></div>
+                                          </div>
+                                          <div class="form-group w-25">
+                                             <label>To Place<span class="required">*</span></label>
+                                             <select class="form-select form-select-sm" th:field="*{toPlace}" th:classappend="${#fields.hasErrors('toPlace') ? 'is-invalid':''}" autofocus>
+                                               <option selected value="">Select</option>
+                                                <option value="Chennai">Chennai</option>
+                                                <option  value="Bangalore">Bangalore</option>
+                                                <option  value="Mumbai">Mumbai</option>
+                                                <option  value="Delhi">Delhi</option>
+                                                <option  value="Kolkatta">Kolkatta</option>
+                                                <option  value="Cochin">Cochin</option>
+                                                <option  value="Mysore">Mysore</option>
+                                             </select>
+                                             <div class="invalid-feedback" th:errors="*{toPlace}"></div>
+                                          </div>
+                                          <div class="form-group w-25">
+                                             <label>Dispatch Time<span class="required">*</span></label>
+                                             <input type="time" th:field="*{dispatch}" th:classappend="${#fields.hasErrors('dispatch') ? 'is-invalid':''}" placeholder="Enter Ticket Price" class="form-control form-control-sm" autofocus>
+                                             <div class="invalid-feedback" th:errors="*{dispatch}"></div>
+                                          </div>
+                                          <div class="form-group w-25">
+                                             <label>Arrival Time<span class="required">*</span></label>
+                                             <input type="time" th:field="*{arrival}" th:classappend="${#fields.hasErrors('arrival') ? 'is-invalid':''}" placeholder="Enter Ticket Price" class="form-control form-control-sm" autofocus>
+                                             <div class="invalid-feedback" th:errors="*{arrival}"></div>
+                                          </div>
+                                       </div>
+                                       <div class="row">
+                                          <div class="form-group col-md-4">
+                                             <label>Seat Availability<span class="required">*</span></label>
+                                             <input type="number" th:field="*{totalSeat}" th:classappend="${#fields.hasErrors('totalSeat') ? 'is-invalid':''}" placeholder="Enter Train Seat" class="form-control form-control-sm" autofocus>
+                                            <div class="invalid-feedback" th:errors="*{totalSeat}"></div>
+                                          </div>
+                                          
+                                          <div class="form-group col-md-4">
+                                             <label>Date<span class="required">*</span></label>
+                                             <input type="text" th:field="*{date}" th:classappend="${#fields.hasErrors('date') ? 'is-invalid':''}" placeholder="DD/MM/YYYY" onfocus="(this.type = 'date')" class="form-control form-control-sm" autofocus>
+                                             <div class="invalid-feedback" th:errors="*{date}"></div>
+                                          </div>
+                                          <div class="form-group col-md-4">
+                                             <label>Ticket Price<span class="required">*</span></label>
+                                             <input type="number" th:field="*{trainFare}" th:classappend="${#fields.hasErrors('trainFare') ? 'is-invalid':''}" placeholder="Enter Ticket Price" class="form-control form-control-sm" autofocus>
+                                             <div class="invalid-feedback" th:errors="*{trainFare}"></div>
+                                          </div>
+                                       </div>
+                                       
+                                       <div class="form-group text-center" style="margin-top: 16px;">
+                                          <button value="submit" type="submit" class="btn btn-primary"> Add Train  </button> &nbsp;&nbsp;
+                                          <button value="reset" type="reset" class="btn btn-secondary">Reset</button>
+                                       </div>
+                                    </form>
+                                 </article>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <footer class="footer text-center" style="padding-top: 74px;padding-bottom: 0px;height: 117px;">
+               Designed by
+               <a href="https://www.ingroinfo.com/">IngrOInfo</a>.
+               <div class="copyright">
+                  &copy; Copyright <strong><span>2022</span></strong>
+               </div>
+            </footer>
+         </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/html-duration-picker@latest/dist/html-duration-picker.min.js"></script>
+      <script type="text/javascript" th:src="@{/admin_css/assets/libs/jquery/dist/jquery.min.js}"></script>
+      <!-- Bootstrap tether Core JavaScript -->
+      <script type="text/javascript" th:src="@{/admin_css/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
+      <!--Wave Effects -->
+      <script type="text/javascript" th:src="@{/admin_css/dist/js/waves.js}"></script>
+      <!--Menu sidebar -->
+      <script type="text/javascript" th:src="@{/admin_css/dist/js/sidebarmenu.js}"></script>
+      <!--Custom JavaScript -->
+      <script type="text/javascript" th:src="@{/admin_css/dist/js/custom.min.js}"></script>
+      <!-- this page js -->
+      <script type="text/javascript" th:src="@{/admin_css/assets/extra-libs/DataTables/datatables.min.js}"></script>
+      <!-- Data Tables  -->
+      <script>
+         $("#zero_config").DataTable();
+      </script>
+      <!-- Basic Table  -->
+   </body>
+</html>
